@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <body>         
+        <div class="login-wrapper" style="margin: auto; padding-top: 250px;" >
+            <div class="logo">
+                <a href="https://www.naver.com" class="logo">
+                    <h1 class="blind">헬스리뷰</h1>
+                </a>
+            </div>
+            <h2>Login</h2>
+            <form method="post" action="서버의url" id="login-form">
+                <input type="text" name="userName" placeholder="Email">
+                <input type="password" name="userPassword" placeholder="Password">
+                <label for="remember-check">
+                    <input type="checkbox" id="remember-check">아이디 저장하기
+                </label>
+                <input type="submit" value="Login">
+            </form>
+        </div>
+    </body>
+</body>
+</html>
