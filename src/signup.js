@@ -1,24 +1,28 @@
 import './signup.css';
+import Logo from './img/logo.PNG';
+import { useState } from "react"; 
+import Box from "@mui/material/Box"; 
+import Button from "@mui/material/Button"; 
+import Typography from "@mui/material/Typography";
+import CustomModal from "./CustomModal_Signiup";
 
+function Signup() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-function Signup(){
-    return(
-<>
-  <meta charSet="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-  <link href="icon.png" rel="shortcut icon" type="image/x-icon" />
-  <link rel="stylesheet" href="signup.css" />
+  const openModal = () => setIsModalOpen(true); 
+  const closeModal = () => setIsModalOpen (false);
+
+  return (   
+  <div>
+  <Button onClick={openModal}>Signup</Button> 
+  <CustomModal
+  isOpen={isModalOpen} 
+  closeModal={closeModal}
+  >
+      <Box>
   <div className="member">
     {/* 1. 로고 */}
-    <a href="home.html">
-      <img
-        className="logo"
-        href="home.html"
-        src="logo.PNG"
-        alt="헬스리뷰 로고"
-      />
-    </a>
+    <img className="logo" src={Logo} alt="Logo" />
     {/* 2. 필드 */}
     <div className="field">
       <b>아이디</b>
@@ -80,8 +84,9 @@ function Signup(){
       </span>
     </div>
   </div>
-</>
-    )
-};
-
+      </Box>
+  </CustomModal>
+  </div>
+  );
+}
 export default Signup;

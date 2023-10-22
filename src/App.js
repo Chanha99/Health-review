@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import './App.css';
 import './home.css';
 import './menubar.css';
@@ -7,6 +8,7 @@ import Login from './login.js';
 import Signup from './signup.js';
 
 import Home from './home';
+import Modal from './login';
 
 function App() {
 

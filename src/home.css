@@ -14,21 +14,25 @@ header{
 }
  
 /* 제목영역안에 있는 메인 로고 이미지 위치 지정 */
-.logo{
+header .logo{
     position: relative;
-    height: 51px;
+    height: 60px;
     top: 30px;
     left: 30px;
     border-bottom: 1px solid #406b56;
-
 }
  
 /* 제목영역안에 오른쪽 상단에 top_menu 배치 */
 .top_menu{
     position: absolute;
-    top: 30px;
+    top: 45px;
     right: 10px;
     color: black;
+    display: flex;
+}
+
+.top_menu span{
+    margin-top: 5px;
 }
  
 /* top_menu a의 글시 검은색으로 */

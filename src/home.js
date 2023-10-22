@@ -1,6 +1,7 @@
 import React from 'react';
 import Logo from './img/logo.PNG';
 import Test from './img/test.png';
+import { useState } from 'react';
 import './home.css';
 import './menubar.css';
 import { useNavigate, BrowserRouter, Route, Routes, Link } from 'react-router-dom';
@@ -9,20 +10,8 @@ import Signup from './signup.js';
 import Menubar from './menubar.js';
 
 function Home() {
-    const movePage = useNavigate();
-
-    function gohome(){
-        movePage('/home');
-    }
-    function gologin(){
-        movePage('/login');
-    }
-    function gosignup(){
-        movePage('/signup');
-    }
     return (
       <>
-    <meta charSet="UTF-8" />
     <Menubar/>
     <div id="page">
       <header>
@@ -30,9 +19,8 @@ function Home() {
           <img src={Logo} alt="Logo" />
         </div>
         <div className="top_menu">
-            <a onClick={gohome}>HOME |</a>
-            <a onClick={gologin}>LOGIN |</a>
-            <a onClick={gosignup}>SIGNUP </a>
+            <Login/> <span>|</span>
+            <Signup/>
         </div>
       </header>
       <main id="container">
@@ -175,9 +163,7 @@ function Home() {
       </main>
     </div>
   </>
-  
     );
   }
-  
   export default Home;
   

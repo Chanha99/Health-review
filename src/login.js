@@ -1,23 +1,28 @@
 import './login.css';
+import Logo from './img/logo.PNG';
+import { useState } from "react"; 
+import Box from "@mui/material/Box"; 
+import Button from "@mui/material/Button"; 
+import Typography from "@mui/material/Typography";
+import CustomModal from "./CustomModal";
 
-function Login(){
-    return(
-        <>
-  <meta charSet="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>로그인</title>
-  <link href="icon.png" rel="shortcut icon" type="image/x-icon" />
-  <link rel="stylesheet" href="login.css" />
-  <div className="login-wrapper" style={{ margin: "auto", paddingTop: 250 }}>
+function Login() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true); 
+  const closeModal = () => setIsModalOpen (false);
+
+  return (   
+  <div>
+  <Button className="LoginButton"onClick={openModal}>Login</Button> 
+  <CustomModal
+  isOpen={isModalOpen} 
+  closeModal={closeModal}
+  >
+      <Box>
+      <div className="login-wrapper">
     <div className="logo">
-      <a href="home.html">
-        <img
-          className="logo"
-          href="home2.html"
-          src="logo.PNG"
-          alt="헬스리뷰 로고"
-        />
-      </a>
+      <img className="logo" src={Logo} alt="Logo" />
     </div>
     <h2>Login</h2>
     <form method="post" action="서버의url" id="login-form">
@@ -35,8 +40,9 @@ function Login(){
       </div>
     </form>
   </div>
-</>
-
-    )
+      </Box>
+  </CustomModal>
+  </div>
+  );
 }
 export default Login;

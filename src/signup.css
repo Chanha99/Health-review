@@ -27,12 +27,14 @@ a{
     margin: auto; /*중앙 정렬*/
     padding: 0 20px;
     margin-bottom: 20px;
+    margin-top: 40px;
 }
 
 .member .logo{
     /*로고는 이미지라 인라인 블록이니까 마진 오토 안됨 블록요소만 됨 */
     display: block;
     margin :50px auto;
+    margin-left: 70px;
 }
 
 .member .field{
