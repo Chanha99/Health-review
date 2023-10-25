@@ -1,4 +1,4 @@
-import './signup.css';
+import './css/signup.css';
 import Logo from './img/logo.PNG';
 import { useState } from "react"; 
 import Box from "@mui/material/Box"; 
@@ -13,7 +13,7 @@ function Signup() {
   const closeModal = () => setIsModalOpen (false);
 
   return (   
-  <div>
+  <div className='signup'>
   <Button onClick={openModal}>Signup</Button> 
   <CustomModal
   isOpen={isModalOpen} 

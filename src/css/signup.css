@@ -6,7 +6,7 @@
     outline: none; /*focus 했을때 테두리 나오게 */
 }
 
-body{
+.signup{
     font-family: 'Noto Sans KR', sans-serif;
     font-size:14px;
     background-color: #f5f6f7;
@@ -106,13 +106,13 @@ color:#fff
 }
 
 .userpw{
-    background:url(./img/logo.PNG) no-repeat center right 15px;
+    background:url(/src/img/logo.PNG) no-repeat center right 15px;
     background-size: 20px;
     background-color: #fff;
 }
 
 .userpw-confirm{
-    background:url(./img/logo.PNG) no-repeat center right 15px;
+    background:url(/src/img/logo.PNG) no-repeat center right 15px;
     background-size: 20px;
     background-color: #fff;
 }
