@@ -1,12 +1,13 @@
 import React from 'react';
 import { useEffect  } from 'react';
 import { useNavigate, BrowserRouter, Route, Routes, } from 'react-router-dom';
-import Login from './login.js';
-import Signup from './signup.js';
+import M_Login from './m_login.js';
+import M_Signup from './m_signup.js';
 import {useMediaQuery} from 'react-responsive';
 import Home from './home';
 import Modal from './login';
 import Mobile_Home from './mobile_home';
+import Menubar from './menubar.js';
 
 
 function App() {
@@ -29,7 +30,14 @@ function App() {
     <>
       <div className='App'>
         
-      <Mobile><Mobile_Home/></Mobile>
+      <Mobile>
+        <Routes>
+         <Route path="" element={<Mobile_Home/>} />
+         <Route path="m_login" element={<M_Login/>} />
+         <Route path="m_signup" element={<M_Signup/>} />
+        </Routes>
+       </Mobile>
+       
       <PC><Home/></PC>
         
       </div>

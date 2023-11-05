@@ -156,5 +156,8 @@ body, ul, li {
     transform: translate(-20px, 0);   /* 둥근 모서리의 너비만큼 숨겨주기 */
   }
   /* 사이드바 끝 */
-  
+  /* 모바일 메뉴바*/
+  .m_menubar{
+    font-weight: bold;
+  }
   /* 커스텀 끝 */

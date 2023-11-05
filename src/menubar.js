@@ -4,9 +4,12 @@ import { Menu, Button } from 'antd';
 import styled from 'styled-components';
 import { BrowserView, MobileView } from 'react-device-detect';
 import { MenuOutlined, MenuFoldOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import { Link, Route, Routes } from 'react-router-dom';
 import Login from './login.js';
 import Signup from './signup.js';
+
+
+
 
 const NavTop = styled.div`
   display: flex;
@@ -124,8 +127,10 @@ function Menubar(){
             { toggleBar ? <MenuOutlined /> : <MenuFoldOutlined /> }
           </Button>
         </NavTop>
+        
         { toggleMenu &&
           <Menu
+            className='m_menubar'
             defaultSelectedKeys={['1']}
             mode="inline"
             theme="light"
@@ -142,13 +147,14 @@ function Menubar(){
               내 정보
             </Menu.Item>
             <Menu.Item key="signin">
-              <Login/>
+            <Link to="/m_login">로그인</Link>
             </Menu.Item>
             <Menu.Item key="signup">
-              <Signup/>
+            <Link to="/m_signup">회원가입</Link>
             </Menu.Item>
           </Menu>
         }
+        
   </MobileView>
   
   </>
