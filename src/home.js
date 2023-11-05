@@ -1,10 +1,7 @@
 import React from 'react';
 import Logo from './img/logo.PNG';
 import Test from './img/test.png';
-import { useState } from 'react';
 import './css/home.css';
-import './css/menubar.css';
-import { useNavigate, BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import Login from './login.js';
 import Signup from './signup.js';
 import Menubar from './menubar.js';

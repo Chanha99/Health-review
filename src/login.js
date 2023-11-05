@@ -3,7 +3,6 @@ import Logo from './img/logo.PNG';
 import { useState } from "react"; 
 import Box from "@mui/material/Box"; 
 import Button from "@mui/material/Button"; 
-import Typography from "@mui/material/Typography";
 import CustomModal from "./CustomModal";
 
 function Login() {
