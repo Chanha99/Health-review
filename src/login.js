@@ -32,7 +32,7 @@ function Login() {
         아이디 저장하기
       </label>
       <input type="submit" defaultValue="Login" />
-      <div className="signup">
+      <div className="L_signup">
         <a href="signup.html">
           <button type="button">회원가입</button>
         </a>

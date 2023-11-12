@@ -1,12 +1,18 @@
-import './css/login.css';
-import Logo from './img/logo.PNG';
-import React from 'react';
+import React from "react";
+import { Routes, Route, Outlet } from "react-router-dom";
+import Login from "./mobile_home";
+import Signup from "./m_signup";
 
-
-function M_login(){
-<div className="login-wrapper">
-   asdasdasdasd
-  </div>
+function UserRoutes({ match }) {
+  return (
+    <>
+      <Routes>
+        
+        <Route path="/m_login" element={<Login />} />
+        <Route path="/m_signup" element={<Signup />} />
+      </Routes>
+    </>
+  );
 }
 
-  export default M_login;
+export default UserRoutes;

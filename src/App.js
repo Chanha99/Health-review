@@ -1,14 +1,14 @@
 import React from 'react';
 import { useEffect  } from 'react';
-import { useNavigate, BrowserRouter, Route, Routes, } from 'react-router-dom';
-import M_Login from './m_login.js';
+import { Link, useNavigate, BrowserRouter, Route, Routes, } from 'react-router-dom';
+import L_Login from './m_login.js';
 import M_Signup from './m_signup.js';
 import {useMediaQuery} from 'react-responsive';
 import Home from './home';
 import Modal from './login';
 import Mobile_Home from './mobile_home';
 import Menubar from './menubar.js';
-
+import NotFound from './test.js';
 
 function App() {
   const PC = ({children}) => {
@@ -32,13 +32,17 @@ function App() {
         
       <Mobile>
         <Routes>
-         <Route path="" element={<Mobile_Home/>} />
-         <Route path="m_login" element={<M_Login/>} />
-         <Route path="m_signup" element={<M_Signup/>} />
-        </Routes>
+         <Route path="/" element={<Mobile_Home/>} />
+         <Route path="/#/m_login" element={<L_Login/>} />
+         <Route path="/m_signup" element={<M_Signup/>} />
+         <Route path="*" element={<NotFound />}></Route>
+      </Routes>
+      <Link to="/m_login">로그인</Link>
        </Mobile>
        
       <PC><Home/></PC>
+      
+        
         
       </div>
     </>

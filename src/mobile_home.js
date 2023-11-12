@@ -11,6 +11,7 @@ function Mobile_Home() {
       <>
     
     <div id="mobile_page">
+    
       <div className='m_header'>
         <div className="m_logo">
           <img src={Logo} alt="Logo" />
@@ -125,7 +126,7 @@ function Mobile_Home() {
           </div>
         </section>
         
-        <Link to="m_login">로그인</Link>
+        
         
     </div>
   </>
