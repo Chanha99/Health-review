@@ -74,25 +74,21 @@
 }
 
 .review_icon1{
-    width: 40%;
+   width: 370px;
 }
 
 .review_icon2{
-    width:80%;
+   width: 370px;
 }
 
 .review{
-    width: 100%;
+    display: flex;
     margin-top: 2%;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
-.review1{
-    position: absolute;
-}
 
-.review2{
-    margin-left: 50%;
-}
 
 .down_content{
     width: 100%;

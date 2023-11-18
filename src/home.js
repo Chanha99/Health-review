@@ -1,15 +1,15 @@
 import React from 'react';
-import Logo from './img/r_logo.png';
-import Test from './img/test.png';
+
+// import Test from './img/test.png';
 import Up from './img/up.jpg';
 import Down from './img/down.webp';
 import './css/r_home.css';
-import Login from './login.js';
-import Signup from './signup.js';
-import Menubar from './menubar.js';
-import L_Login from './m_login.js';
-import { Link, useNavigate, BrowserRouter, Route, Routes, } from 'react-router-dom';
-import Board from './board.js';
+
+// import Menubar from './menubar.js';
+// import L_Login from './m_login.js';
+import { Link } from 'react-router-dom';
+// import Board from './board.js';
+
 
 
 
@@ -19,43 +19,24 @@ function Home() {
       <>
     
     <div id="page">
-      <header className='main_header'>
-        <div className="logo">
-          <img className='r_logo' src={Logo} alt="Logo" />
-        </div>
-        <div className="top_menu">
-            <Login/> <span>|</span>
-            <Signup/> 
-        </div>
-      </header>
-        <div className='header_nav'>
-          <div className='inner'>
-            <nav>
-              <Link to="./board">게시판</Link> |
-              <Link to="./review">리뷰</Link> |
-              <Link to="./board">게시판</Link> |
-              <Link to="./review">리뷰</Link> 
-            </nav>
-          </div>
-        </div>
+      
       <main id="container">
         <section className="review_content">
           <h1>운동 부위</h1>
           <div className="review">
             <div className="review1">
-              <Link to="./review_up">
-              <h3>상체 </h3> 
-                <img className="review_icon1" src={Up} />
+              <Link to="/chest">
+                <h3>상체</h3>
+                <img className='review_icon1' alt="상체" src={Up} />
               </Link>
+
               
             </div>
             <div className="review2">
-            <Link to="./review_down">
-                <h3>하체</h3> 
-                <img className="review_icon2" src={Down} />
+              <Link to="/leg">
+                  <h3>하체</h3> 
+                  <img className="review_icon2" alt="하체" src={Down} />
               </Link>
-              
-
             </div>
           </div>
         </section>
@@ -74,7 +55,7 @@ function Home() {
               <div>
                 
                 <div className="title">
-                  <a href="#">글 제목이 들어갑니다.</a>
+                  <Link to="#">글 제목이 들어갑니다.</Link>
                 </div>
                 <div className="writer">김이름</div>
                 <div className="date">2023.10.3</div>
@@ -83,7 +64,7 @@ function Home() {
               <div>
                 
                 <div className="title">
-                  <a href="#">글 제목이 들어갑니다.</a>
+                  <Link to="#">글 제목이 들어갑니다.</Link>
                 </div>
                 <div className="writer">이름</div>
                 <div className="date">2023.10.3</div>
@@ -92,7 +73,7 @@ function Home() {
               <div>
                 
                 <div className="title">
-                  <a href="#">글 제목이 들어갑니다.</a>
+                  <Link to="#">글 제목이 들어갑니다.</Link>
                 </div>
                 <div className="writer">이름</div>
                 <div className="date">2023.10.3</div>
@@ -101,7 +82,7 @@ function Home() {
               <div>
                 
                 <div className="title">
-                  <a href="#">글 제목이 들어갑니다.</a>
+                  <Link to="#">글 제목이 들어갑니다.</Link>
                 </div>
                 <div className="writer">이름</div>
                 <div className="date">2023.10.3</div>
@@ -110,7 +91,7 @@ function Home() {
               <div>
                 
                 <div className="title">
-                  <a href="#">글 제목이 들어갑니다.</a>
+                  <Link to="#">글 제목이 들어갑니다.</Link>
                 </div>
                 <div className="writer">이름</div>
                 <div className="date">2023.10.3</div>
@@ -119,7 +100,7 @@ function Home() {
               <div>
                 
                 <div className="title">
-                  <a href="#">글 제목이 들어갑니다.</a>
+                  <Link to="#">글 제목이 들어갑니다.</Link>
                 </div>
                 <div className="writer">이름</div>
                 <div className="date">2023.10.3</div>
@@ -128,7 +109,7 @@ function Home() {
               <div>
                 
                 <div className="title">
-                  <a href="#">글 제목이 들어갑니다.</a>
+                  <Link to="#">글 제목이 들어갑니다.</Link>
                 </div>
                 <div className="writer">이름</div>
                 <div className="date">2023.10.3</div>
@@ -137,7 +118,7 @@ function Home() {
               <div>
                 
                 <div className="title">
-                  <a href="#">글 제목이 들어갑니다.</a>
+                  <Link to="#">글 제목이 들어갑니다.</Link>
                 </div>
                 <div className="writer">이름</div>
                 <div className="date">2023.10.3</div>
@@ -146,7 +127,7 @@ function Home() {
               <div>
                 
                 <div className="title">
-                  <a href="#">글 제목이 들어갑니다.</a>
+                  <Link to="#">글 제목이 들어갑니다.</Link>
                 </div>
                 <div className="writer">이름</div>
                 <div className="date">2023.10.3</div>
@@ -168,7 +149,7 @@ function Home() {
               <div>
                 
                 <div className="title">
-                  <a href="#">글 제목이 들어갑니다.</a>
+                  <Link to="#">글 제목이 들어갑니다.</Link>
                 </div>
                 <div className="writer">김이름</div>
                 <div className="date">2023.10.3</div>
@@ -177,7 +158,7 @@ function Home() {
               <div>
                 
                 <div className="title">
-                  <a href="#">글 제목이 들어갑니다.</a>
+                  <Link to="#">글 제목이 들어갑니다.</Link>
                 </div>
                 <div className="writer">이름</div>
                 <div className="date">2023.10.3</div>
@@ -186,7 +167,7 @@ function Home() {
               <div>
                 
                 <div className="title">
-                  <a href="#">글 제목이 들어갑니다.</a>
+                  <Link to="#">글 제목이 들어갑니다.</Link>
                 </div>
                 <div className="writer">이름</div>
                 <div className="date">2023.10.3</div>
@@ -195,7 +176,7 @@ function Home() {
               <div>
                 
                 <div className="title">
-                  <a href="#">글 제목이 들어갑니다.</a>
+                  <Link to="#">글 제목이 들어갑니다.</Link>
                 </div>
                 <div className="writer">이름</div>
                 <div className="date">2023.10.3</div>
@@ -204,7 +185,7 @@ function Home() {
               <div>
                 
                 <div className="title">
-                  <a href="#">글 제목이 들어갑니다.</a>
+                  <Link to="#">글 제목이 들어갑니다.</Link>
                 </div>
                 <div className="writer">이름</div>
                 <div className="date">2023.10.3</div>
@@ -213,7 +194,7 @@ function Home() {
               <div>
                 
                 <div className="title">
-                  <a href="#">글 제목이 들어갑니다.</a>
+                  <Link to="#">글 제목이 들어갑니다.</Link>
                 </div>
                 <div className="writer">이름</div>
                 <div className="date">2023.10.3</div>
@@ -222,7 +203,7 @@ function Home() {
               <div>
                 
                 <div className="title">
-                  <a href="#">글 제목이 들어갑니다.</a>
+                  <Link to="#">글 제목이 들어갑니다.</Link>
                 </div>
                 <div className="writer">이름</div>
                 <div className="date">2023.10.3</div>
@@ -231,7 +212,7 @@ function Home() {
               <div>
                 
                 <div className="title">
-                  <a href="#">글 제목이 들어갑니다.</a>
+                  <Link to="#">글 제목이 들어갑니다.</Link>
                 </div>
                 <div className="writer">이름</div>
                 <div className="date">2023.10.3</div>
@@ -240,7 +221,7 @@ function Home() {
               <div>
                 
                 <div className="title">
-                  <a href="#">글 제목이 들어갑니다.</a>
+                  <Link to="#">글 제목이 들어갑니다.</Link>
                 </div>
                 <div className="writer">이름</div>
                 <div className="date">2023.10.3</div>
@@ -253,6 +234,12 @@ function Home() {
       </main>
     </div>
     <div className='footer'></div>
+
+
+    <div>
+      
+    </div>
+    
   </>
     );
   }

@@ -1,0 +1,13 @@
+.chest1{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.chest1 h1{
+    text-align: center;
+}
+
+.chest1 div{
+    margin-top: 2%;
+}

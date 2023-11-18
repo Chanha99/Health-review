@@ -1,0 +1,13 @@
+.shoulder{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.shoulder h1{
+    text-align: center;
+}
+
+.shoulder div{
+    margin-top: 2%;
+}
