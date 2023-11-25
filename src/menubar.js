@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { BrowserView, MobileView } from 'react-device-detect';
 import { MenuOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { Link, Route, Routes } from 'react-router-dom';
-import Login from './login.js';
+import Login from './component/login.js';
 import Signup from './signup.js';
 
 

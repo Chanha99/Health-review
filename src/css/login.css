@@ -1,75 +1,61 @@
-*{
-    padding: 0;
-    margin: 0;
-    border: none;
-        
-}
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 
-body{
-    font-size: 14px;
-    font-family: 'Roboto', sans-serif;
-}
-.login-wrapper{
-    width: 400px;
-    height: 350px;
-    padding: 40px;
-    box-sizing: border-box;
-    margin-top: 10px;
-    margin: "auto";
-    margin-left: 95px;
-}
-
-.login-wrapper > .logo{
-    margin-bottom: 45px;
-    margin-left: 50px;
-}
-.login-wrapper > h2{
-    font-size: 24px;
-    color: #3183d1;
-    margin-bottom: 20px;
-}
-#login-form > input{
-    width: 100%;
-    height: 48px;
-    padding: 0 10px;
-    box-sizing: border-box;
-    margin-bottom: 16px;
-    border-radius: 6px;
-    background-color: #F8F8F8;
-}
-#login-form > input::placeholder{
-    color: #D2D2D2;
-}
-#login-form > input[type="submit"]{
-    color: #fff;
-    font-size: 16px;
-    background-color: #3183d1;
-    margin-top: 20px;
-}
-#login-form > input[type="checkbox"]{
-    display: none;
-}
-#login-form > label{
-    color: #999999;
-}
-#login-form input[type="checkbox"] + label{
-    cursor: pointer;
-    padding-left: 26px;
-    background-image: url("");
-    background-repeat: no-repeat;
-    background-size: contain;
-}
-#login-form input[type="checkbox"]:checked + label{
-    background-image: url("");
-    background-repeat: no-repeat;
-    background-size: contain;
-}
-.L_signup{
+  .form {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 30px;
+    flex-direction: column;
+    text-align: center;
+  }
 
-    background: #F8F9FA;
-    border: 1px solid #F8F9FA;
-    border-radius:  4px;
-}
+  .background {
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 40px 30px -20px;
+    height: auto;
+    max-width: 450px;
+    text-align: center;
+    width: 90%;
+    border-radius: 5px;
+    margin: 0px auto;
+    padding: 10px;
+  }  
+
+  .background h2 {
+    text-align: center;
+  }
+  
+  .login {
+    border: none;
+    border-bottom: 2px solid #D1D1D4;
+    background: none;
+    padding: 10px;
+    font-weight: 700;
+    transition: .2s;
+    width: 75%;
+  }
+  
+  .login:active,
+  .login:focus,
+  .login:hover {
+    outline: none;
+    border-bottom-color: #BBD2E6;
+  }
+  
+  .btn {
+    border: none;
+    width: 75%;
+    background-color: #5d96c9;
+    color: white;
+    padding: 15px 0;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .2s;
+  }
+  
+  .btn:hover {
+    background-color: #5d96c9;
+  }
+
+  .noac {
+    text-align: center;
+  }

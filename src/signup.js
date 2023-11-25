@@ -5,12 +5,18 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button"; 
 import Typography from "@mui/material/Typography";
 import CustomModal from "./CustomModal_Signiup";
+import { useEffect } from 'react';
 
-function Signup() {
+function Signup(props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true); 
   const closeModal = () => setIsModalOpen (false);
+
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
+
 
   return (   
   <div className='signup'>
@@ -27,16 +33,22 @@ function Signup() {
     <div className="field">
       <b>아이디</b>
       <span className="placehold-text">
-        <input type="text" />
+      <input className="login" type="text" placeholder="아이디" onChange={event => {
+        setId(event.target.value);
+      }} />
       </span>
     </div>
     <div className="field">
       <b>비밀번호</b>
-      <input className="userpw" type="password" />
+      <input className="login" type="password" placeholder="비밀번호" onChange={event => {
+        setPassword(event.target.value);
+      }} />
     </div>
     <div className="field">
       <b>비밀번호 재확인</b>
-      <input className="userpw-confirm" type="password" />
+      <input className="login" type="password" placeholder="비밀번호 확인" onChange={event => {
+        setPassword2(event.target.value);
+      }} />
     </div>
     <div className="field">
       <b>닉네임</b>
@@ -70,7 +82,30 @@ function Signup() {
       </div>
     </div>
     {/* 5. 가입하기 버튼 */}
-    <input type="submit" defaultValue="가입하기" />
+    <input className="btn" type="submit" value="회원가입" onClick={() => {
+        const userData = {
+          userId: id,
+          userPassword: password,
+          userPassword2: password2,
+        };
+        fetch("http://localhost:3001/signin", { //signin 주소에서 받을 예정
+          method: "post", // method :통신방법
+          headers: {      // headers: API 응답에 대한 정보를 담음
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userData), //userData라는 객체를 보냄
+        })
+          .then((res) => res.json())
+          .then((json) => {
+            if(json.isSuccess==="True"){
+              alert('회원가입이 완료되었습니다!')
+              props.setMode("LOGIN");
+            }
+            else{
+              alert(json.isSuccess)
+            }
+          });
+      }} />
     {/* 6. 푸터 */}
     <div className="member-footer">
       <div>

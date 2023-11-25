@@ -9,6 +9,7 @@ import './css/r_home.css';
 // import L_Login from './m_login.js';
 import { Link } from 'react-router-dom';
 // import Board from './board.js';
+import Test from './test.js';
 
 
 
@@ -19,7 +20,6 @@ function Home() {
       <>
     
     <div id="page">
-      
       <main id="container">
         <section className="review_content">
           <h1>운동 부위</h1>

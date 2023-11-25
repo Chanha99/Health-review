@@ -9,7 +9,7 @@ import Home from './home';
 import Mobile_Home from './mobile_home';
 // import Menubar from './menubar.js';
 import NotFound from './test.js';
-import Login from './login.js';
+import Login from './component/login.js';
 import Signup from './signup.js';
 import Logo from './img/r_logo.png';
 
@@ -60,15 +60,12 @@ function App() {
         </div>
         <div className="top_menu">
           
-            <Login/> <span>|</span>
-            <Signup/> 
+        <Link to="./login">로그인</Link> 
         </div>
       </header>
         <div className='header_nav'>
           <div className='inner'>
             <nav>
-              <Link to="./board">게시판</Link> |
-              <Link to="./review">리뷰</Link> |
               <Link to="./board">게시판</Link> |
               <Link to="./review">리뷰</Link> 
             </nav>
@@ -80,6 +77,7 @@ function App() {
             <Route path="/chest1" element={<Chest1></Chest1>}></Route>
             <Route path="/leg" element={<Leg></Leg>}></Route>
             <Route path="/shoulder" element={<Shoulder></Shoulder>}></Route>
+            <Route path="/login" element={<Login/>}> </Route>
             <Route path="*" element={<NotFound />}> </Route>
       </Routes>
       </PC>
