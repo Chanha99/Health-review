@@ -14,13 +14,16 @@ import Test from './test.js';
 
 
 
+
 function Home() {
   
     return (
       <>
     
     <div id="page">
+  
       <main id="container">
+     
         <section className="review_content">
           <h1>운동 부위</h1>
           <div className="review">

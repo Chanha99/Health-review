@@ -1,15 +1,19 @@
 import '../../src/css/login.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
+//import Home from '../home';
+//import Home1 from './home1';
+import Home2 from './home2';
 
 function Login(props) {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   
   return <>
-    <h2>로그인</h2>
-
-    <div className="form">
+  <div className='background1'>
+  <h2>로그인</h2>
+  
+  <div className="form">
       <p><input className="login" type="text" name="username" placeholder="아이디" onChange={event => {
         setId(event.target.value);
       }} /></p>
@@ -23,28 +27,30 @@ function Login(props) {
           userPassword: password,
         };
         fetch("http://localhost:3001/login", { //auth 주소에서 받을 예정
-          method: "post", // method :통신방법
-          headers: {      // headers: API 응답에 대한 정보를 담음
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(userData), //userData라는 객체를 보냄
-        })
-          .then((res) => res.json())
-          .then((json) => {            
-            if(json.isLogin==="True"){
-              props.setMode("WELCOME");
-            }
-            else {
-              alert(json.isLogin)
-            }
-          });
-      }} /></p>
+        method: "post", // method :통신방법
+        headers: {      // headers: API 응답에 대한 정보를 담음
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(userData), //userData라는 객체를 보냄
+      })
+      .then((res) => res.json())
+      .then((json) => {            
+        if(json.isLogin==="True"){
+          props.setMode("WELCOME");
+        }
+        else {
+          alert(json.isLogin)
+        }
+      });
+    }} /></p>
     </div>
 
     <p>계정이 없으신가요?  <button onClick={() => {
       props.setMode("SIGNIN");
     }}>회원가입</button></p>
-  </> 
+  </div>
+  </>
+
 }
 
 
@@ -54,6 +60,7 @@ function Signin(props) {
   const [password2, setPassword2] = useState("");
 
   return <>
+  <div className='background1'>
     <h2>회원가입</h2>
 
     <div className="form">
@@ -96,7 +103,8 @@ function Signin(props) {
     <p>로그인화면으로 돌아가기  <button onClick={() => {
       props.setMode("LOGIN");
     }}>로그인</button></p>
-  </> 
+  </div>
+  </>
 }
 
 function App() {
@@ -125,9 +133,7 @@ function App() {
   }
   else if (mode === 'WELCOME') {
     content = <>
-    <h2>메인 페이지에 오신 것을 환영합니다</h2>
-    <p>로그인에 성공하셨습니다.</p> 
-    <a href="/logout">로그아웃</a>   
+    <Home2/>
     </>
   }
 

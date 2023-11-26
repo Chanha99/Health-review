@@ -4,6 +4,7 @@ function Chest1(){
     return(
     <div className="chest1">
         
+        
             <div>
             <h1>벤치 프레스</h1>
             <iframe width="560" height="315" src="https://www.youtube.com/embed/0DsXTSHo3lU?si=O0MOg6Mrc775d71E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

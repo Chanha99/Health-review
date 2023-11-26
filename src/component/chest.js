@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 function Chest() {
     return (
     <div>
+      
       <h1 align="center">상체 운동</h1>
       <ul>
         <li>

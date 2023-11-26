@@ -48,6 +48,8 @@ app.post("/login", (req, res) => { // 데이터 받아서 결과 전송
     const password = req.body.userPassword;
     const sendData = { isLogin: "" };
 
+    
+
     if (username && password) {             // id와 pw가 입력되었는지 확인
         db.query('SELECT * FROM userTable WHERE username = ?', [username], function (error, results, fields) {
             if (error) throw error;
