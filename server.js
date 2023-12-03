@@ -133,21 +133,25 @@ const connection = mysql.createConnection({
   database: 'cap',
 });
 
-
 // 게시글 목록 조회
 app.get('/posts', (req, res) => {
-  const query = 'SELECT id, title, author, DATE_FORMAT(timestamp, "%Y-%m-%dT%H:%i:%s.%fZ") AS timestamp, content FROM posts';
-  // DATE_FORMAT 함수를 사용하여 timestamp를 ISO 형식으로 변환
+  const query = 'SELECT id, title, author, timestamp, content FROM posts';
   db.query(query, (err, results) => {
     if (err) {
       console.error('Database query error:', err);
       res.status(500).json({ error: 'Internal Server Error' });
     } else {
-      res.status(200).json(results);
+      // 클라이언트로 전송할 때 ISO 형식으로 변환
+      const postsWithISODate = results.map((post) => ({
+        ...post,
+        timestamp: new Date(post.timestamp).toISOString(),
+      }));
+      res.status(200).json(postsWithISODate);
     }
   });
 });
 
+// 새로운 게시글 작성
 app.post('/posts', (req, res) => {
   const { title, author, content } = req.body;
 
@@ -155,34 +159,39 @@ app.post('/posts', (req, res) => {
     return res.status(400).json({ error: 'Missing required fields' });
   }
 
-// 현재 시간을 JavaScript의 Date 객체로 얻어옴
-const timestamp = new Date();
+  // 클라이언트에서 받은 ISO 형식의 날짜를 JavaScript Date 객체로 파싱
+  const clientTimestamp = new Date(req.body.timestamp);
 
-// JavaScript의 Date 객체를 MySQL DATETIME 형식으로 변환
-const formattedTimestamp = timestamp.toISOString().slice(0, 19).replace('T', ' ');
-
-// 나머지 코드는 변환된 formattedTimestamp를 사용
-const query = 'INSERT INTO posts (title, author, timestamp, content) VALUES (?, ?, ?, ?)';
-const values = [title, author, formattedTimestamp, content];
-
-db.query(query, values, (err, results) => {
-  if (err) {
-    console.error('Database query error:', err);
-    res.status(500).json({ error: 'Internal Server Error' });
-  } else {
-    const newPost = {
-      id: results.insertId,
-      title,
-      author,
-      timestamp: formattedTimestamp, // 형식 변환된 타임스탬프 전송
-      content,
-    };
-
-   
-    res.status(201).json(newPost);
+  // 유효한 Date 객체인지 확인
+  if (isNaN(clientTimestamp.getTime())) {
+    return res.status(400).json({ error: 'Invalid timestamp format' });
   }
+
+  // JavaScript Date 객체를 MySQL DATETIME 형식으로 변환
+  const timestamp = clientTimestamp.toISOString().slice(0, 19).replace('T', ' ');
+
+  const query = 'INSERT INTO posts (title, author, timestamp, content) VALUES (?, ?, ?, ?)';
+  const values = [title, author, timestamp, content];
+
+  db.query(query, values, (err, results) => {
+    if (err) {
+      console.error('Database query error:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
+    } else {
+      // 클라이언트로 전송할 때 ISO 형식으로 변환
+      const insertedPost = {
+        id: results.insertId,
+        title,
+        author,
+        timestamp: new Date(timestamp).toISOString(),
+        content,
+      };
+      res.status(201).json(insertedPost);
+    }
+  });
 });
-});
+
+
 
   // MySQL 연결 여부 확인
 if (!connection._connectCalled) {

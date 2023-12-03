@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import '../css/board.css';
 
 
 const Board = () => {
@@ -14,29 +15,30 @@ const Board = () => {
     try {
       const response = await fetch('http://localhost:3001/posts');
       const data = await response.json();
-      setPosts(data);
+
+      // DATETIME 값을 ISO 형식으로 변환
+      const postsWithISODate = data.map((post) => ({
+        ...post,
+        timestamp: new Date(post.timestamp).toISOString(),
+      }));
+      
+      setPosts(postsWithISODate);
     } catch (error) {
       console.error('Error fetching posts:', error);
     }
   };
-
-  // timestamp를 ISO 형식으로 변환하는 함수
-  const formatTimestamp = (timestamp) => {
-    const date = new Date(timestamp);
-    return date.toISOString();
-  };
-
+  
   return (
     <div>
-      <h1>Post List</h1>
+      <h1>게시판</h1>
       <Link to="/write">작성</Link>
       <ul>
         {posts.map((post) => (
-          <li key={post.id}>
-            <strong>Title:</strong> {post.title} <br />
-            <strong>Author:</strong> {post.author} <br />
-            <p>Timestamp: {formatTimestamp(post.timestamp)}</p>
-            <strong>Content:</strong> {post.content}
+          <li className='one' key={post.id}>
+            <p>Title: {post.title}</p>
+            <p>Author: {post.author}</p>
+            <p>Timestamp: {post.timestamp}</p>
+            <p>Content: {post.content}</p>
           </li>
         ))}
       </ul>
