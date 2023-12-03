@@ -1,95 +1,45 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 
 const Board = () => {
   const [posts, setPosts] = useState([]);
-  const [newPost, setNewPost] = useState('');
-  const [editPost, setEditPost] = useState({ id: null, title: '' });
 
   useEffect(() => {
-    // Fetch posts when the component mounts
-    fetchPosts();
+    fetchData(); // 초기 데이터 가져오기
   }, []);
 
-  const fetchPosts = async () => {
+  const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/api/posts');
-      setPosts(response.data);
+      const response = await fetch('http://localhost:3001/posts');
+      const data = await response.json();
+      setPosts(data);
     } catch (error) {
       console.error('Error fetching posts:', error);
     }
   };
 
-  const handleAddPost = async () => {
-    try {
-      const response = await axios.post('http://localhost:3001/api/posts', {
-        title: newPost,
-      });
-      setPosts([...posts, response.data]);
-      setNewPost('');
-    } catch (error) {
-      console.error('Error adding post:', error);
-    }
-  };
-
-  const handleEditPost = async () => {
-    try {
-      await axios.put(`http://localhost:3001/api/posts/${editPost.id}`, {
-        title: editPost.title,
-      });
-      // Update the posts array with the edited post
-      setPosts(posts.map(post => (post.id === editPost.id ? editPost : post)));
-      setEditPost({ id: null, title: '' });
-    } catch (error) {
-      console.error('Error editing post:', error);
-    }
-  };
-
-  const handleDeletePost = async (postId) => {
-    try {
-      await axios.delete(`http://localhost:3001/api/posts/${postId}`);
-      // Remove the deleted post from the posts array
-      setPosts(posts.filter(post => post.id !== postId));
-    } catch (error) {
-      console.error('Error deleting post:', error);
-    }
+  // timestamp를 ISO 형식으로 변환하는 함수
+  const formatTimestamp = (timestamp) => {
+    const date = new Date(timestamp);
+    return date.toISOString();
   };
 
   return (
     <div>
-      <h1>게시판</h1>
+      <h1>Post List</h1>
+      <Link to="/write">작성</Link>
       <ul>
-        {posts.map(post => (
+        {posts.map((post) => (
           <li key={post.id}>
-            {editPost.id === post.id ? (
-              <div>
-                <input
-                  type="text"
-                  value={editPost.title}
-                  onChange={(e) => setEditPost({ ...editPost, title: e.target.value })}
-                />
-                <button onClick={handleEditPost}>확인</button>
-              </div>
-            ) : (
-              <div>
-                {post.title}
-                <button onClick={() => setEditPost({ id: post.id, title: post.title })}>
-                  수정
-                </button>
-                <button onClick={() => handleDeletePost(post.id)}>삭제</button>
-              </div>
-            )}
+            <strong>Title:</strong> {post.title} <br />
+            <strong>Author:</strong> {post.author} <br />
+            <p>Timestamp: {formatTimestamp(post.timestamp)}</p>
+            <strong>Content:</strong> {post.content}
           </li>
         ))}
       </ul>
-      <div>
-        <input
-          type="text"
-          value={newPost}
-          onChange={(e) => setNewPost(e.target.value)}
-        />
-        <button onClick={handleAddPost}>추가</button>
-      </div>
     </div>
   );
 };

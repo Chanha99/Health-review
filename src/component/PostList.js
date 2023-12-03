@@ -1,21 +1,35 @@
 import React, { useEffect, useState } from 'react';
-import { getPosts } from '../api/api';
+import axios from 'axios';
 
-const PostList = ({ onPostClick }) => {
+const PostList = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    getPosts().then(data => setPosts(data));
+    const fetchPosts = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/posts');
+        setPosts(response.data);
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+      }
+    };
+
+    fetchPosts();
   }, []);
 
   return (
     <div>
-      {posts.map(post => (
-        <div key={post.id} style={{ cursor: 'pointer' }} onClick={() => onPostClick(post.id)}>
-          <h3>{post.title}</h3>
-          <p>{post.content}</p>
-        </div>
-      ))}
+      <h1>Post List</h1>
+      <ul>
+        {posts.map((post) => (
+          <li key={post.id}>
+            <strong>Title:</strong> {post.title} <br />
+            <strong>Author:</strong> {post.author} <br />
+            <strong>Timestamp:</strong> {post.timestamp} <br />
+            <strong>Content:</strong> {post.content}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

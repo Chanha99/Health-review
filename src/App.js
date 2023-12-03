@@ -23,6 +23,7 @@ import { HeartFilled } from '@ant-design/icons';
 import Home1 from './component/home1.js';
 import Home2 from './component/home2.js';
 import Board from './component/board.js';
+import Write from './component/write.js';
 
 
 
@@ -70,6 +71,7 @@ function App() {
             <Route path="/leg" element={<Leg></Leg>}></Route>
             <Route path="/shoulder" element={<Shoulder></Shoulder>}></Route>
             <Route path="/board" element={<Board></Board>}></Route>
+            <Route path="/write" element={<Write></Write>}></Route>
             </Route>
             <Route path="/login" element={<Login/>}> </Route>
             <Route path="*" element={<NotFound />}> </Route>

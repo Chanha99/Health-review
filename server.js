@@ -120,6 +120,8 @@ app.post("/signin", (req, res) => {  // 데이터 받아서 결과 전송
     
 });
 
+
+
 app.use(cors());
 app.use(express.json());
  
@@ -131,47 +133,56 @@ const connection = mysql.createConnection({
   database: 'cap',
 });
 
-// MySQL 연결
-// API to get all posts
-app.get('/api/posts', (req, res) => {
-  const query = 'SELECT * FROM posts';
-  connection.query(query, (err, results) => {
-    if (err) throw err;
-    res.json(results);
+
+// 게시글 목록 조회
+app.get('/posts', (req, res) => {
+  const query = 'SELECT id, title, author, DATE_FORMAT(timestamp, "%Y-%m-%dT%H:%i:%s.%fZ") AS timestamp, content FROM posts';
+  // DATE_FORMAT 함수를 사용하여 timestamp를 ISO 형식으로 변환
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error('Database query error:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
+    } else {
+      res.status(200).json(results);
+    }
   });
 });
 
-// API to add a new post
-app.post('/api/posts', (req, res) => {
-  const { title } = req.body;
-  const query = 'INSERT INTO posts (title) VALUES (?)';
-  connection.query(query, [title], (err, results) => {
-    if (err) throw err;
-    res.json({ id: results.insertId, title });
-  });
-});
+app.post('/posts', (req, res) => {
+  const { title, author, content } = req.body;
 
-// API to update a post
-app.put('/api/posts/:id', (req, res) => {
-  const postId = req.params.id;
-  const { title } = req.body;
-  const query = 'UPDATE posts SET title = ? WHERE id = ?';
-  connection.query(query, [title, postId], (err) => {
-    if (err) throw err;
-    res.json({ id: postId, title });
-  });
-});
+  if (!title || !author || !content) {
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
 
-// API to delete a post
-app.delete('/api/posts/:id', (req, res) => {
-  const postId = req.params.id;
-  const query = 'DELETE FROM posts WHERE id = ?';
-  connection.query(query, [postId], (err) => {
-    if (err) throw err;
-    res.json({ id: postId });
-  });
-});
+// 현재 시간을 JavaScript의 Date 객체로 얻어옴
+const timestamp = new Date();
 
+// JavaScript의 Date 객체를 MySQL DATETIME 형식으로 변환
+const formattedTimestamp = timestamp.toISOString().slice(0, 19).replace('T', ' ');
+
+// 나머지 코드는 변환된 formattedTimestamp를 사용
+const query = 'INSERT INTO posts (title, author, timestamp, content) VALUES (?, ?, ?, ?)';
+const values = [title, author, formattedTimestamp, content];
+
+db.query(query, values, (err, results) => {
+  if (err) {
+    console.error('Database query error:', err);
+    res.status(500).json({ error: 'Internal Server Error' });
+  } else {
+    const newPost = {
+      id: results.insertId,
+      title,
+      author,
+      timestamp: formattedTimestamp, // 형식 변환된 타임스탬프 전송
+      content,
+    };
+
+   
+    res.status(201).json(newPost);
+  }
+});
+});
 
   // MySQL 연결 여부 확인
 if (!connection._connectCalled) {
@@ -182,56 +193,6 @@ if (!connection._connectCalled) {
     }
   });
 }
-
-// 게시물 목록 조회
-app.get('/api/posts', (req, res) => {
-  const query = 'SELECT * FROM posts';
-  connection.query(query, (error, results) => {
-    if (error) throw error;
-    res.json(results);
-  });
-});
-
-// 새로운 게시물 작성
-app.post('/api/posts', (req, res) => {
-  const { title } = req.body;
-  const query = 'INSERT INTO posts (title) VALUES (?)';
-  connection.query(query, [title], (error, results) => {
-    if (error) throw error;
-    res.sendStatus(200);
-  });
-});
-
-// 특정 게시물의 댓글 조회
-app.get('/api/comments/:postId', (req, res) => {
-  const { postId } = req.params;
-  const query = 'SELECT * FROM comments WHERE post_id = ?';
-  connection.query(query, [postId], (error, results) => {
-    if (error) throw error;
-    res.json(results);
-  });
-});
-
-// 게시물 수정
-app.put('/api/posts/:postId', (req, res) => {
-  const { postId } = req.params;
-  const { title } = req.body;
-  const query = 'UPDATE posts SET title = ? WHERE id = ?';
-  connection.query(query, [title, postId], (error, results) => {
-    if (error) throw error;
-    res.sendStatus(200);
-  });
-});
-
-// 게시물 삭제
-app.delete('/api/posts/:postId', (req, res) => {
-  const { postId } = req.params;
-  const query = 'DELETE FROM posts WHERE id = ?';
-  connection.query(query, [postId], (error, results) => {
-    if (error) throw error;
-    res.sendStatus(200);
-  });
-});
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)

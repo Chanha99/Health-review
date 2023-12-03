@@ -1,32 +1,57 @@
-import { Component } from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import React, { useState } from 'react';
+import axios from 'axios';
 
-/**
- * Write class
- */
-class Write extends Component {
-    /**
-     * @return {Component} Component
-     */
-    render() {
-        return (
-            <div>
-                <Form>
-                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                        <Form.Label>제목</Form.Label>
-                        <Form.Control type="email" placeholder="name@example.com" />
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                        <Form.Label>내용</Form.Label>
-                        <Form.Control as="textarea" />
-                    </Form.Group>
-                </Form>
-                <Button variant="info">작성완료</Button>
-                <Button variant="secondary">취소</Button>
-            </div>
-        );
+const PostForm = ({ onPostCreated }) => {
+  const [title, setTitle] = useState('');
+  const [author, setAuthor] = useState('');
+  const [content, setContent] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post('http://localhost:3001/posts', {
+        title,
+        author,
+        content,
+      });
+
+      if (onPostCreated) {
+        onPostCreated(response.data);
+      }
+
+      // 폼 초기화
+      setTitle('');
+      setAuthor('');
+      setContent('');
+    } catch (error) {
+      console.error('Error creating post:', error);
     }
-}
+  };
 
-export default Write;
+  return (
+    <div>
+      <h2>Create a New Post</h2>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Title:
+          <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+        </label>
+        <br />
+        <label>
+          Author:
+          <input type="text" value={author} onChange={(e) => setAuthor(e.target.value)} />
+        </label>
+        <br />
+        <label>
+          Content:
+          <textarea value={content} onChange={(e) => setContent(e.target.value)} />
+        </label>
+        <br />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  );
+};
+
+export default PostForm;
