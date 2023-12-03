@@ -1,5 +1,7 @@
 const express = require('express')
 const session = require('express-session')
+const cors = require('cors');
+const mysql = require('mysql');
 const path = require('path');
 const app = express()
 const port = 3001
@@ -118,6 +120,118 @@ app.post("/signin", (req, res) => {  // 데이터 받아서 결과 전송
     
 });
 
+app.use(cors());
+app.use(express.json());
+ 
+
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: '0615',
+  database: 'cap',
+});
+
+// MySQL 연결
+// API to get all posts
+app.get('/api/posts', (req, res) => {
+  const query = 'SELECT * FROM posts';
+  connection.query(query, (err, results) => {
+    if (err) throw err;
+    res.json(results);
+  });
+});
+
+// API to add a new post
+app.post('/api/posts', (req, res) => {
+  const { title } = req.body;
+  const query = 'INSERT INTO posts (title) VALUES (?)';
+  connection.query(query, [title], (err, results) => {
+    if (err) throw err;
+    res.json({ id: results.insertId, title });
+  });
+});
+
+// API to update a post
+app.put('/api/posts/:id', (req, res) => {
+  const postId = req.params.id;
+  const { title } = req.body;
+  const query = 'UPDATE posts SET title = ? WHERE id = ?';
+  connection.query(query, [title, postId], (err) => {
+    if (err) throw err;
+    res.json({ id: postId, title });
+  });
+});
+
+// API to delete a post
+app.delete('/api/posts/:id', (req, res) => {
+  const postId = req.params.id;
+  const query = 'DELETE FROM posts WHERE id = ?';
+  connection.query(query, [postId], (err) => {
+    if (err) throw err;
+    res.json({ id: postId });
+  });
+});
+
+
+  // MySQL 연결 여부 확인
+if (!connection._connectCalled) {
+  connection.connect((err) => {
+    if (err) {
+      console.error('Error connecting to MySQL:', err);
+      throw err;
+    }
+  });
+}
+
+// 게시물 목록 조회
+app.get('/api/posts', (req, res) => {
+  const query = 'SELECT * FROM posts';
+  connection.query(query, (error, results) => {
+    if (error) throw error;
+    res.json(results);
+  });
+});
+
+// 새로운 게시물 작성
+app.post('/api/posts', (req, res) => {
+  const { title } = req.body;
+  const query = 'INSERT INTO posts (title) VALUES (?)';
+  connection.query(query, [title], (error, results) => {
+    if (error) throw error;
+    res.sendStatus(200);
+  });
+});
+
+// 특정 게시물의 댓글 조회
+app.get('/api/comments/:postId', (req, res) => {
+  const { postId } = req.params;
+  const query = 'SELECT * FROM comments WHERE post_id = ?';
+  connection.query(query, [postId], (error, results) => {
+    if (error) throw error;
+    res.json(results);
+  });
+});
+
+// 게시물 수정
+app.put('/api/posts/:postId', (req, res) => {
+  const { postId } = req.params;
+  const { title } = req.body;
+  const query = 'UPDATE posts SET title = ? WHERE id = ?';
+  connection.query(query, [title, postId], (error, results) => {
+    if (error) throw error;
+    res.sendStatus(200);
+  });
+});
+
+// 게시물 삭제
+app.delete('/api/posts/:postId', (req, res) => {
+  const { postId } = req.params;
+  const query = 'DELETE FROM posts WHERE id = ?';
+  connection.query(query, [postId], (error, results) => {
+    if (error) throw error;
+    res.sendStatus(200);
+  });
+});
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
