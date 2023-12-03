@@ -191,6 +191,28 @@ app.post('/posts', (req, res) => {
   });
 });
 
+// 게시글 상세 조회
+app.get('/posts/:id', (req, res) => {
+  const postId = req.params.id;
+  const query = 'SELECT id, title, author, timestamp, content FROM posts WHERE id = ?';
+  
+  db.query(query, [postId], (err, results) => {
+    if (err) {
+      console.error('Database query error:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
+    } else if (results.length === 0) {
+      res.status(404).json({ error: 'Post not found' });
+    } else {
+      // 클라이언트로 전송할 때 ISO 형식으로 변환
+      const postWithISODate = {
+        ...results[0],
+        timestamp: new Date(results[0].timestamp).toISOString(),
+      };
+      res.status(200).json(postWithISODate);
+    }
+  });
+});
+
 
 
   // MySQL 연결 여부 확인
