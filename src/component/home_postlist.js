@@ -5,10 +5,9 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import '../css/postlist.css';
+import '../css/r_home.css';
 
-const PostList = ({ onSelectPost }) => {
+const Home_postList = ({ onSelectPost }) => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -42,14 +41,16 @@ const PostList = ({ onSelectPost }) => {
   };
 
   return (
-    <div className='board_main'>
-      <h2>게시물 목록</h2>
-      <div className='board_list_1'>
-        <div className="top">
-          <div className="title">제목</div>
-          <div className="writer">글쓴이</div>
-          <div className="date">작성일</div>
-        </div>
+    <section className="down_content">
+          <div className="new_board_list_wrap">
+          <div className='board_hot'><h1>🕒최신글</h1></div>
+            <div className="board_list">
+              <div className="top">
+                
+                <div className="title">제목</div>
+                <div className="writer">글쓴이</div>
+                <div className="date">작성일</div>
+              </div>
         <ul>
           {posts.map((post) => (
             <li className='posts' key={post.id}>
@@ -71,19 +72,10 @@ const PostList = ({ onSelectPost }) => {
           onChange={handlePageChange}
         />
       </Stack>
-
-      <div className='write'>
-      <Stack direction="row" spacing={2}>
-      <Link to="/write">
-      <Button variant="contained" href="#contained-buttons">
-        글 작성
-      </Button>
-      </Link>
-    </Stack>
-      </div>
       </div>
     </div>
+    </section>
   );
 };
 
-export default PostList;
+export default Home_postList;

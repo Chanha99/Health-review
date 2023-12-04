@@ -155,13 +155,13 @@ app.get('/board', (req, res) => {
         console.error('Database query error:', err);
         res.status(500).json({ error: 'Internal Server Error' });
       } else {
-        // 클라이언트로 전송할 때 ISO 형식으로 변환
-        const postsWithISODate = results.map((post) => ({
+        // 클라이언트로 전송할 때 ISO 형식으로 변환하지 않음
+        const postsWithoutISODate = results.map((post) => ({
           ...post,
-          timestamp: new Date(post.timestamp).toISOString(),
+          // timestamp: new Date(post.timestamp).toISOString(), // 주석 처리
         }));
         res.setHeader('X-Total-Count', totalCount);
-        res.status(200).json(postsWithISODate);
+        res.status(200).json(postsWithoutISODate); // ISO 형식으로 변환하지 않은 데이터 전송
       }
     });
   });

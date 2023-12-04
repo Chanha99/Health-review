@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import '../css/postdetail.css';
 
 const PostDetail = () => {
   const { id } = useParams(); // useParams 훅을 사용하여 URL 파라미터를 가져옴
@@ -46,7 +47,7 @@ const PostDetail = () => {
   }, [post]);
 
   return (
-    <div>
+    <div className='post-detail'>
       <h2>Post Detail</h2>
       {post ? (
         <div>
@@ -59,14 +60,14 @@ const PostDetail = () => {
         <p>Loading post detail...</p>
       )}
 
-<div>
+<div className='comment-section'>
         <h3>Comments</h3>
         {comments.map((comment) => (
-          <div key={comment.id}>
+          <div key={comment.id} className='comment'>
             <p>{comment.username}: {comment.content}</p>
           </div>
         ))}
-        <div>
+        <div className='comment'>
           <input
             type="text"
             placeholder="Your username"

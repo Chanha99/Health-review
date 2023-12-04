@@ -1,0 +1,86 @@
+.board_main {
+    width: 80%;
+    margin: auto;
+}
+
+.posts {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 1rem;
+  }
+  
+  .board_list_1 {
+    border-bottom: 1px solid #000;
+  }
+  
+  .board_list_1:last-child {
+    border-bottom: 1px solid #000;
+  }
+
+  .board_list_1 > div.top > div {
+    font-weight: 600;
+}
+
+
+.board_list_1 .title {
+    width: 50%;
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.board_list_1 .top .title {
+    text-align: center;
+}
+
+.board_list_1 .writer {
+    width: 20%;
+    text-align: center;
+}
+
+.board_list_1 .date {
+    width: 15%;
+    text-align: center;
+}
+  
+.top {
+    display: flex;
+    justify-content: space-between;
+    background-color: #F5F5F5;
+    padding: 10px;
+    font-weight: bold;
+    border-top: 1px solid #000;
+  }
+
+  .posts {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    flex-direction: row;
+    border-bottom: 1px solid #ddd;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .title {
+    flex: 2;
+  }
+
+  .writer {
+    flex: 1;
+  }
+
+  .date {
+    flex: 1;
+  }
+
+  .num {
+    margin-left: 43.5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
