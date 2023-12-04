@@ -41,6 +41,12 @@ const PostDetail = () => {
     }
   };
 
+  const formatTimestamp = (timestamp) => {
+    const date = new Date(timestamp);
+    const formattedDateString = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')} ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}:${date.getSeconds().toString().padStart(2, '0')}`;
+    return formattedDateString;
+  };
+
   // post 상태가 변경될 때 UI를 갱신
   useEffect(() => {
     console.log('Post updated:', post);
@@ -53,7 +59,7 @@ const PostDetail = () => {
         <div>
           <h3>{post.title}</h3>
           <p>Author: {post.author}</p>
-          <p>Timestamp: {post.timestamp}</p>
+          <p>Timestamp: {formatTimestamp(post.timestamp)}</p>
           <p>{post.content}</p>
         </div>
       ) : (

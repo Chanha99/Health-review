@@ -1,0 +1,41 @@
+.main_write {
+    width: 1160px;
+    margin: 20px auto 0;
+}
+
+.write_wrap {
+    padding: 33px 68px 100px;
+    border: 2px solid #d5d5d5;
+    border-top: 2px solid black;
+}
+
+.line_write {
+    margin-top: 7%;
+}
+
+.nick_line_write {
+    margin-bottom: 20px;
+}
+
+.nickname_write input,
+.title_write input,
+.content_write textarea {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.content_write textarea {
+    height: 400px;
+}
+
+.submit_write {
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    float: right;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}

@@ -168,6 +168,7 @@ app.get('/board', (req, res) => {
 });
 
 
+
 // 새로운 게시글 작성
 app.post('/board', (req, res) => {
   const { title, author, content } = req.body;
