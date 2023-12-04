@@ -213,6 +213,42 @@ app.get('/board/:id', (req, res) => {
   });
 });
 
+// 게시글 댓글 목록 조회
+app.get('/board/:id/comments', (req, res) => {
+  const postId = req.params.id;
+  const query = 'SELECT * FROM comments WHERE post_id = ?';
+  db.query(query, [postId], (err, results) => {
+    if (err) {
+      console.error('Database query error:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
+    } else {
+      res.status(200).json(results);
+    }
+  });
+});
+
+// 새로운 댓글 작성
+app.post('/board/:id/comments', (req, res) => {
+  const postId = req.params.id;
+  const { username, content } = req.body;
+
+  if (!username || !content) {
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
+
+  const query = 'INSERT INTO comments (post_id, username, content) VALUES (?, ?, ?)';
+  const values = [postId, username, content];
+
+  db.query(query, values, (err, results) => {
+    if (err) {
+      console.error('Database query error:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
+    } else {
+      res.status(201).json({ id: results.insertId, postId, username, content });
+    }
+  });
+});
+
 
 
   // MySQL 연결 여부 확인
