@@ -13,7 +13,7 @@ const PostForm = ({ onPostCreated }) => {
       // 현재 시간을 ISO 형식으로 가져오기
       const timestamp = new Date().toISOString();
 
-      const response = await axios.post('http://localhost:3001/posts', {
+      const response = await axios.post('http://localhost:3001/board', {
         title,
         author,
         content,

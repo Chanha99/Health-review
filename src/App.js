@@ -24,6 +24,8 @@ import Home1 from './component/home1.js';
 import Home2 from './component/home2.js';
 import Board from './component/board.js';
 import Write from './component/write.js';
+import PostList from './component/PostList.js';
+import PostDetail from './component/PostDetail.js';
 
 
 
@@ -74,6 +76,7 @@ function App() {
             <Route path="/write" element={<Write></Write>}></Route>
             </Route>
             <Route path="/login" element={<Login/>}> </Route>
+            <Route path="/board/:id" element={<PostDetail/>}> </Route>
             <Route path="*" element={<NotFound />}> </Route>
       </Routes>
       </PC>

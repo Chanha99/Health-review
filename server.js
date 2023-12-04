@@ -134,7 +134,7 @@ const connection = mysql.createConnection({
 });
 
 // 게시글 목록 조회
-app.get('/posts', (req, res) => {
+app.get('/board', (req, res) => {
   const query = 'SELECT id, title, author, timestamp, content FROM posts';
   db.query(query, (err, results) => {
     if (err) {
@@ -152,7 +152,7 @@ app.get('/posts', (req, res) => {
 });
 
 // 새로운 게시글 작성
-app.post('/posts', (req, res) => {
+app.post('/board', (req, res) => {
   const { title, author, content } = req.body;
 
   if (!title || !author || !content) {
@@ -192,7 +192,7 @@ app.post('/posts', (req, res) => {
 });
 
 // 게시글 상세 조회
-app.get('/posts/:id', (req, res) => {
+app.get('/board/:id', (req, res) => {
   const postId = req.params.id;
   const query = 'SELECT id, title, author, timestamp, content FROM posts WHERE id = ?';
   
