@@ -133,23 +133,40 @@ const connection = mysql.createConnection({
   database: 'cap',
 });
 
-// 게시글 목록 조회
+// 게시글 목록 조회 페이지네이션 추가
 app.get('/board', (req, res) => {
-  const query = 'SELECT id, title, author, timestamp, content FROM posts';
-  db.query(query, (err, results) => {
-    if (err) {
-      console.error('Database query error:', err);
+  const page = req.query.page || 1;
+  const pageSize = 10; // 한 페이지에 보여줄 게시글 수
+  const offset = (page - 1) * pageSize;
+
+  const countQuery = 'SELECT COUNT(*) as totalCount FROM posts';
+  db.query(countQuery, (countErr, countResults) => {
+    if (countErr) {
+      console.error('Database count query error:', countErr);
       res.status(500).json({ error: 'Internal Server Error' });
-    } else {
-      // 클라이언트로 전송할 때 ISO 형식으로 변환
-      const postsWithISODate = results.map((post) => ({
-        ...post,
-        timestamp: new Date(post.timestamp).toISOString(),
-      }));
-      res.status(200).json(postsWithISODate);
+      return;
     }
+
+    const totalCount = countResults[0].totalCount;
+
+    const query = 'SELECT id, title, author, timestamp, content FROM posts LIMIT ? OFFSET ?';
+    db.query(query, [pageSize, offset], (err, results) => {
+      if (err) {
+        console.error('Database query error:', err);
+        res.status(500).json({ error: 'Internal Server Error' });
+      } else {
+        // 클라이언트로 전송할 때 ISO 형식으로 변환
+        const postsWithISODate = results.map((post) => ({
+          ...post,
+          timestamp: new Date(post.timestamp).toISOString(),
+        }));
+        res.setHeader('X-Total-Count', totalCount);
+        res.status(200).json(postsWithISODate);
+      }
+    });
   });
 });
+
 
 // 새로운 게시글 작성
 app.post('/board', (req, res) => {
