@@ -65,16 +65,15 @@ function App() {
        
       <PC>
       
+            <Header/>
       <Routes>
-            <Route path="/" element={<Home1></Home1>}> 
-              <Route path='' element={<Home/>}></Route>
+            <Route path="/" element={<Home/>}></Route>
             <Route path="/chest" element={<Chest></Chest>}></Route>
             <Route path="/chest1" element={<Chest1></Chest1>}></Route>
             <Route path="/leg" element={<Leg></Leg>}></Route>
             <Route path="/shoulder" element={<Shoulder></Shoulder>}></Route>
             <Route path="/board" element={<Board></Board>}></Route>
             <Route path="/write" element={<Write></Write>}></Route>
-            </Route>
             <Route path="/login" element={<Login/>}> </Route>
             <Route path="/board/:id" element={<PostDetail/>}> </Route>
             <Route path="*" element={<NotFound />}> </Route>

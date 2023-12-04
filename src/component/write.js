@@ -66,6 +66,7 @@ const PostForm = ({ onPostCreated }) => {
         <button className='submit_write' type="submit">등록</button>
       </form>
       </div>
+      <div className='footer'></div>
     </div>
   );
 };

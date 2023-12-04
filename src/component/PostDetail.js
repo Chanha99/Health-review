@@ -53,41 +53,53 @@ const PostDetail = () => {
   }, [post]);
 
   return (
-    <div className='post-detail'>
-      <h2>Post Detail</h2>
+    <div className='pd_main'>
+      <div className='pd_wrap'>
+      <div className='pd_header'>
+      <h2>게시글</h2>
+      </div>
       {post ? (
         <div>
           <h3>{post.title}</h3>
-          <p>Author: {post.author}</p>
-          <p>Timestamp: {formatTimestamp(post.timestamp)}</p>
-          <p>{post.content}</p>
+          <p className='pd_info'>작성자: {post.author} | 작성 시간: {formatTimestamp(post.timestamp)}</p> 
+          
+          <p className='pd_content'>{post.content}</p>
         </div>
       ) : (
         <p>Loading post detail...</p>
       )}
 
-<div className='comment-section'>
-        <h3>Comments</h3>
+      <div className='comment-section'>
+        <div className='pd_comment'>
+        <h3>댓글</h3>
+        </div>
         {comments.map((comment) => (
           <div key={comment.id} className='comment'>
-            <p>{comment.username}: {comment.content}</p>
+            <p className='pd_comment_new'>{comment.username}: {comment.content}</p>
           </div>
         ))}
-        <div className='comment'>
+        <div className='pd_comment_box'>
+          <div className='pd_input'>
           <input
+            className='pd_comment_input'
             type="text"
-            placeholder="Your username"
+            placeholder="닉네임"
             value={newComment.username}
             onChange={(e) => setNewComment({ ...newComment, username: e.target.value })}
           />
+          </div>
           <textarea
-            placeholder="Your comment"
+            className='pd_comment_content'
+            placeholder="댓글을 작성하세요"
             value={newComment.content}
             onChange={(e) => setNewComment({ ...newComment, content: e.target.value })}
           />
-          <button onClick={addComment}>Add Comment</button>
+          <br/>
+          <button className='pd_submit' onClick={addComment}>등록</button>
         </div>
       </div>
+      </div>
+      <div className='footer'></div>
     </div>
   );
 };
