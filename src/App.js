@@ -26,6 +26,8 @@ import Board from './component/board.js';
 import Write from './component/write.js';
 import PostList from './component/PostList.js';
 import PostDetail from './component/PostDetail.js';
+import Review from './component/review_list.js';
+import Review_detail from './component/reivew_detail.js'
 
 
 
@@ -46,7 +48,7 @@ function App() {
     return <>{isMobile && children}</>
   }
 
-  
+
   
   return (
     <>
@@ -76,6 +78,8 @@ function App() {
             <Route path="/write" element={<Write></Write>}></Route>
             <Route path="/login" element={<Login/>}> </Route>
             <Route path="/board/:id" element={<PostDetail/>}> </Route>
+            <Route path="/review" element={<Review/>}> </Route>
+            <Route path="/review/:id" element={<Review_detail/>} />
             <Route path="*" element={<NotFound />}> </Route>
       </Routes>
       </PC>

@@ -13,7 +13,7 @@ function Header() {
         </div>
         <div className="top_menu">
           
-        <Link to="./login">로그인</Link> 
+        
         
         </div>
       </header>

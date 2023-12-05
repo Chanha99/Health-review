@@ -267,7 +267,84 @@ app.post('/board/:id/comments', (req, res) => {
   });
 });
 
+//------------------------------------------------------------
 
+// 운동 목록 가져오기
+app.get('/review', (req, res) => {
+  const query = 'SELECT * FROM exercises';
+
+  db.query(query, (error, results) => {
+    if (error) {
+      console.error('Database query error:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+// 운동 상세 정보 및 댓글 가져오기
+app.get('/review/:id', (req, res) => {
+  const exerciseId = req.params.id;
+  const exerciseQuery = 'SELECT * FROM exercises WHERE id = ?';
+  const commentsQuery = 'SELECT * FROM review_comments WHERE exercise_id = ?';
+
+  db.query(exerciseQuery, [exerciseId], (exerciseError, exerciseResults) => {
+    if (exerciseError) {
+      console.error('Exercise query error:', exerciseError);
+      res.status(500).json({ error: 'Internal Server Error' });
+    } else if (exerciseResults.length === 0) {
+      res.status(404).json({ error: 'Exercise not found' });
+    } else {
+      db.query(commentsQuery, [exerciseId], (commentsError, commentsResults) => {
+        if (commentsError) {
+          console.error('Comments query error:', commentsError);
+          res.status(500).json({ error: 'Internal Server Error' });
+        } else {
+          res.json({ exercise: exerciseResults[0], comments: commentsResults });
+        }
+      });
+    }
+  });
+});
+
+// 새로운 댓글 작성
+app.post('/review/:id/comments', (req, res) => {
+  const exerciseId = req.params.id;
+  const { username, content, rate } = req.body;
+
+  if (!username || !content || !rate) {
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
+
+  const query = 'INSERT INTO review_comments (exercise_id, username, content, rate) VALUES (?, ?, ?, ?)';
+  const values = [exerciseId, username, content, rate];
+
+  db.query(query, values, (error, results) => {
+    if (error) {
+      console.error('Database query error:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    } else {
+      const newCommentId = results.insertId;
+
+      // 새로 추가된 댓글을 다시 조회하여 클라이언트에 응답
+      const getCommentQuery = 'SELECT * FROM review_comments WHERE id = ?';
+      db.query(getCommentQuery, [newCommentId], (getCommentError, getCommentResults) => {
+        if (getCommentError) {
+          console.error('Get comment query error:', getCommentError);
+          res.status(500).json({ error: 'Internal Server Error' });
+        } else {
+          const newComment = getCommentResults[0];
+          res.status(201).json(newComment);
+        }
+      });
+    }
+  });
+});
+
+
+
+//--------------------------------------------------------------------
 
   // MySQL 연결 여부 확인
 if (!connection._connectCalled) {
