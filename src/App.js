@@ -33,7 +33,6 @@ import Review_detail from './component/reivew_detail.js'
 
 
 
-
 function App() {
   const PC = ({children}) => {
     const isPc = useMediaQuery({

@@ -1,0 +1,80 @@
+.rd_main {
+    width: 1160px;
+    margin: 20px auto 0;
+}
+
+.rd_header {
+    padding-bottom: 10px;
+    border-bottom: 2px solid #3b4890;
+}
+
+.rd_total_rate {
+    text-align: center;
+}
+
+.rd_content {
+    margin-top: 5%;
+    height: 300px;
+}
+
+.rd_comment {
+    padding-bottom: 10px;
+    border-bottom: 2px solid #3b4890;
+}
+
+.rd_comment_new{
+    padding: 9px 3px 7px 3px;
+    border-bottom: 1px solid #eee;
+    display: flex; /* Flex 컨테이너로 설정 */
+    align-items: center; /* 수직으로 가운데 정렬 속성 추가 */
+    margin: 0;
+}
+
+.rd_submit {
+    float: right;
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    float: right;
+}
+
+.rd_comment_content{
+    width: 100%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    height: 78px;
+    padding: 13px;
+    border: 1px solid #cecdce;
+    background: #fff;
+    font-family: -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,굴림,Gulim,sans-serif;
+    font-size: 13px;
+    color: #333;
+    line-height: 18px;
+}
+
+.rd_comment_box {
+    padding: 12px 12px 12px;
+    background: #fafafa;
+    border-top: 2px solid #3b4890;
+    padding-bottom: 50px
+  }
+
+  .rd_input {
+    margin-right: 15px;
+  }
+
+.rd_comment_input{
+    width: 126px;
+    height: 28px;
+    line-height: 29px;
+    padding: 1px 7px 1px;
+    font-family: -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,굴림,Gulim,sans-serif;
+    font-size: 12px;
+    vertical-align: top;
+}
+
+.rd_rate {
+    padding-right: 5px;
+}

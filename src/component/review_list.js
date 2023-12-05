@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import '../css/review_list.css';
 
 const ExerciseList = () => {
   const [exercises, setExercises] = useState([]);
@@ -17,17 +18,24 @@ const ExerciseList = () => {
   }, []);
 
   return (
-    <div>
+    <div className='review_main'>
       <h2>운동 목록</h2>
-      <ul>
+      <div >
+      <ul className='review_wrap'>
         {exercises.map((exercise) => (
+            <div className='sun'>
           <li key={exercise.id}>
-            {/* 운동 상세 페이지로 이동하는 링크 추가 */}
-            <Link to={`/review/${exercise.id}`}>{exercise.name}</Link>
+            <div className=''>
+            <div className='review_list'>
+            <Link to={`/review/${exercise.id}`}><h3>{exercise.name}</h3></Link>
+            </div>
+            </div>
+            
           </li>
+          </div>
         ))}
-        <p>test</p>
       </ul>
+      </div>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import CommentForm from './commentform';
+import '../css/review_detail.css';
 
 const ExerciseDetail = () => {
     const { id } = useParams();
@@ -53,22 +54,30 @@ const ExerciseDetail = () => {
     return (
       <div>
         {exercise ? (
-          <div>
+          <div className='rd_main'>
+            <div className='rd_header'>
+                <h2>리뷰 페이지</h2>
+            </div>
             <h2>{exercise.name}</h2>
-            <p>Description: {exercise.description}</p>
-  
+            <div className='rd_content'>
+            <h3> {exercise.description}</h3>
+            </div>
+                {/* 평균 점수 표시 */}
+                <div className='rd_total_rate'>
+              <p>평균 점수: {averageRate}</p>
+                </div>
+                
             {/* 댓글 목록 표시 */}
-            <h3>Comments</h3>
+            <div className='rd_comment'>
+            <h3>리뷰</h3>
+            </div>
             <ul>
               {comments.map((comment) => (
                 <li key={comment.id}>
-                  {comment.username} :{comment.content}  - 점수: {comment.rate}
+                  <p className='rd_comment_new'>{comment.username} :{comment.content}  - 점수: {comment.rate}</p>
                 </li>
               ))}
             </ul>
-
-            {/* 평균 점수 표시 */}
-          <p>Average Rate: {averageRate}</p>
   
             {/* 댓글 작성 폼 */}
             <CommentForm onCommentSubmit={handleCommentSubmit} />

@@ -1,5 +1,6 @@
 // src/components/CommentForm.js
 import React, { useState } from 'react';
+import '../css/review_detail.css';
 
 const CommentForm = ({ onCommentSubmit }) => {
   const [username, setUsername] = useState('');
@@ -20,29 +21,33 @@ const CommentForm = ({ onCommentSubmit }) => {
 
   return (
     <form onSubmit={handleSubmit}>
+        <div className='rd_comment_box'>
+        <div className='rd_input'>
       <label>
-        Username:
-        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+        <input type="text" className='rd_comment_input' placeholder="닉네임" value={username} onChange={(e) => setUsername(e.target.value)} />
+      </label>
+      <br />
+        </div>
+      <label>
+        <textarea value={content} className='rd_comment_content' placeholder="내용을 입력하세요" onChange={(e) => setContent(e.target.value)} />
       </label>
       <br />
       <label>
-        Comment:
-        <textarea value={content} onChange={(e) => setContent(e.target.value)} />
-      </label>
-      <br />
-      <label>
-        Rate:
+        <span className='rd_rate'>
+        점수:
+        </span>
         <select value={rate} onChange={(e) => setRate(Number(e.target.value))}>
-          <option value={0}>0</option>
-          <option value={1}>1</option>
-          <option value={2}>2</option>
-          <option value={3}>3</option>
-          <option value={4}>4</option>
-          <option value={5}>5</option>
+          <option value={1}>1점</option>
+          <option value={2}>2점</option>
+          <option value={3}>3점</option>
+          <option value={4}>4점</option>
+          <option value={5}>5점</option>
         </select>
       </label>
       <br />
-      <button type="submit">Submit</button>
+      <button className='rd_submit' type="submit">등록</button>
+      </div>
+      <div className='footer'></div>
     </form>
   );
 };
