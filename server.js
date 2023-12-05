@@ -301,12 +301,19 @@ app.get('/review/:id', (req, res) => {
           console.error('Comments query error:', commentsError);
           res.status(500).json({ error: 'Internal Server Error' });
         } else {
-          res.json({ exercise: exerciseResults[0], comments: commentsResults });
+          const comments = commentsResults;
+          
+          // Calculate average rate
+          const totalRate = comments.reduce((sum, comment) => sum + comment.rate, 0);
+          const averageRate = totalRate / comments.length || 0;
+
+          res.json({ exercise: exerciseResults[0], comments: commentsResults, averageRate });
         }
       });
     }
   });
 });
+
 
 // 새로운 댓글 작성
 app.post('/review/:id/comments', (req, res) => {
