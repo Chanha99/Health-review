@@ -1,0 +1,13 @@
+.back{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.back h1{
+    text-align: center;
+}
+
+.back div{
+    margin-top: 2%;
+}
