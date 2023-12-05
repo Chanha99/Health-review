@@ -9,12 +9,21 @@ function Chest() {
         <li>
             <Link to="/chest1">
             <h2>가슴 운동</h2>
+            
             </Link>
         </li>
         <br></br>
         <li>
             <Link to="/shoulder">
             <h2>어깨 운동</h2>
+            
+            </Link>
+        </li>
+        <br></br>
+        <li>
+            <Link to="/back">
+            <h2>등 운동</h2>
+            
             </Link>
         </li>
       </ul>

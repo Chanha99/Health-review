@@ -18,6 +18,7 @@ import Leg from './component/leg.js'
 import Chest from './component/chest.js'
 import Shoulder from './component/shoulder.js'
 import Chest1 from './component/chest1.js'
+import Back from './component/back.js'
 import Header from './component/home_header.js'
 import { HeartFilled } from '@ant-design/icons';
 import Home1 from './component/home1.js';
@@ -70,6 +71,7 @@ function App() {
             <Route path="/" element={<Home/>}></Route>
             <Route path="/chest" element={<Chest></Chest>}></Route>
             <Route path="/chest1" element={<Chest1></Chest1>}></Route>
+            <Route path="/back" element={<Back></Back>}></Route>
             <Route path="/leg" element={<Leg></Leg>}></Route>
             <Route path="/shoulder" element={<Shoulder></Shoulder>}></Route>
             <Route path="/board" element={<Board></Board>}></Route>
