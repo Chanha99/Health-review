@@ -2,10 +2,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import CommentForm from './commentform';
+import CommentForm from '../component/commentform';
 import '../css/review_detail.css';
 
-const ExerciseDetail = () => {
+const M_ExerciseDetail = () => {
     const { id } = useParams();
     const [exercise, setExercise] = useState(null);
     const [comments, setComments] = useState([]);
@@ -56,10 +56,10 @@ const ExerciseDetail = () => {
         {exercise ? (
           <div className='rd_main'>
             <div className='rd_header'>
-                <h2>리뷰 페이지</h2>
+                <h2 className='m_rd_header'>리뷰 페이지</h2>
             </div>
-            <h2 className='rd_name'>{exercise.name}</h2>
-            <div className='rd_content'>
+            <h2 className='m_rd_name'>{exercise.name}</h2>
+            <div className='m_rd_content'>
             <h3> {exercise.description}</h3>
             </div>
                 {/* 평균 점수 표시 */}
@@ -69,13 +69,12 @@ const ExerciseDetail = () => {
                 
             {/* 댓글 목록 표시 */}
             <div className='rd_comment'>
-            <h3>리뷰</h3>
+            <h3 className='m_rd_comment'>리뷰</h3>
             </div>
             <ul>
               {comments.map((comment) => (
                 <li key={comment.id}>
-                  <p className='rd_comment_new'>    
-                  {comment.username} :{comment.content} - 점수: {comment.rate}  </p>
+                  <p className='rd_comment_new'>{comment.username} :{comment.content}  - 점수: {comment.rate}</p>
                 </li>
               ))}
             </ul>
@@ -90,4 +89,4 @@ const ExerciseDetail = () => {
     );
   };
   
-  export default ExerciseDetail;
+  export default M_ExerciseDetail;

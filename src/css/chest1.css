@@ -11,3 +11,12 @@
 .chest1 div{
     margin-top: 2%;
 }
+
+@media ( max-width: 480px ){
+    .chest1{
+        display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    flex-direction: column;
+    }
+}

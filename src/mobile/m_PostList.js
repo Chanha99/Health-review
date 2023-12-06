@@ -8,7 +8,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import '../css/postlist.css';
 
-const PostList = ({ onSelectPost }) => {
+const M_PostList = ({ onSelectPost }) => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -42,8 +42,8 @@ const PostList = ({ onSelectPost }) => {
   };
 
   return (
-    <div className='board_main'>
-      <h2 className='board_list_2'>게시물 목록</h2>
+    <div className='m_board_main'>
+      <h2>게시물 목록</h2>
       <div className='board_list_1'>
         <div className="top">
           <div className="title">제목</div>
@@ -62,7 +62,7 @@ const PostList = ({ onSelectPost }) => {
           ))}
         </ul>
       </div>
-      <div className='num'>
+      <div className='m_num'>
       <Stack spacing={2}>
         <Pagination
           count={totalPages}
@@ -72,7 +72,7 @@ const PostList = ({ onSelectPost }) => {
         />
       </Stack>
 
-      <div className='write'>
+      <div className='m_write'>
       <Stack direction="row" spacing={2}>
       <Link to="/write">
       <Button variant="contained" href="#contained-buttons">
@@ -86,4 +86,4 @@ const PostList = ({ onSelectPost }) => {
   );
 };
 
-export default PostList;
+export default M_PostList;

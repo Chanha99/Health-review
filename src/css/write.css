@@ -39,3 +39,20 @@
     margin-top: 20px;
     margin-bottom: 10px;
 }
+
+@media ( max-width: 480px ){
+    .main_write {
+        width: 100%;
+        margin: 20px auto 0;
+    }
+
+    .write_wrap {
+        padding: 33px 30px 100px;
+        border: 2px solid #d5d5d5;
+        border-top: 2px solid black;
+    }
+    .m_write{
+        margin-bottom: 2%;
+    }
+    
+}

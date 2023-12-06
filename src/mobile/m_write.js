@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../css/write.css';
 
-const PostForm = ({ onPostCreated }) => {
+const M_PostForm = ({ onPostCreated }) => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [content, setContent] = useState('');
@@ -42,7 +42,7 @@ const PostForm = ({ onPostCreated }) => {
 
   return (
     <div className='main_write'>
-      <h2 className='m_write'>게시글 작성</h2>
+      <h2>게시글 작성</h2>
       <div className='write_wrap'>
       <form onSubmit={handleSubmit}>
         <div className='nick_line_write'>
@@ -71,4 +71,4 @@ const PostForm = ({ onPostCreated }) => {
   );
 };
 
-export default PostForm;
+export default M_PostForm;

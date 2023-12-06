@@ -11,3 +11,12 @@
 .shoulder div{
     margin-top: 2%;
 }
+
+@media ( max-width: 480px ){
+    .shoulder{
+        display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    flex-direction: column;
+    }
+}

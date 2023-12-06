@@ -44,6 +44,11 @@
     width: 15%;
     text-align: center;
 }
+
+.board_list_2 {
+  margin-top: 1.5%;
+    margin-bottom: 1.5%;
+}
   
 .top {
     display: flex;
@@ -84,3 +89,20 @@
     align-items: center;
     justify-content: space-between;
   }
+
+  @media ( max-width: 480px ){
+    .m_board_main {
+        width: 100%;
+        margin: 20px auto 0;
+    }
+    
+    .m_num {
+          align-items: center;
+          display: flex;
+          justify-content: flex-end;
+      }
+
+    .m_write{
+      margin-right: 1.5%;
+    }
+    }

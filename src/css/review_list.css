@@ -5,6 +5,10 @@
     margin: 20px auto 0;
 }
 
+.review_1{
+    margin-bottom: 1.5%;
+}
+
 .review_wrap{
     border-top: 2px solid #000;
     display: flex;
@@ -28,3 +32,14 @@
     padding-right: 100px;
     padding-bottom: 30px;
 }
+
+
+@media ( max-width: 480px ){
+    .review_wrap > .sun > li {
+        padding-left: 100px;
+        padding-right: 100px;
+        padding-bottom: 30px;
+        text-align: center;
+    }
+}
+

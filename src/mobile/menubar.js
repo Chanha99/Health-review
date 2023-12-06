@@ -1,12 +1,12 @@
-import './css/menubar.css';
+import '../css/menubar.css';
 import React, { useState, useEffect } from 'react';
 import { Menu, Button } from 'antd';
 import styled from 'styled-components';
 import { BrowserView, MobileView } from 'react-device-detect';
 import { MenuOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { Link, Route, Routes } from 'react-router-dom';
-import Login from './component/login.js';
-import Signup from './signup.js';
+import Login from '../component/login.js';
+import Signup from '../signup.js';
 
 
 
@@ -122,7 +122,7 @@ function Menubar(){
   </BrowserView>
   
   <MobileView>
-  <NavTop>
+  <NavTop className='m_menu'>
           <Button type="primary" onClick={toggleChange} style={{ marginBottom: 16 }}>
             { toggleBar ? <MenuOutlined /> : <MenuFoldOutlined /> }
           </Button>
@@ -138,19 +138,10 @@ function Menubar(){
             onClick={onMenuClick}
           >
             <Menu.Item key="subs">
-              게시판
-            </Menu.Item>
-            <Menu.Item key="product">
-              운동 종목
+            <Link to='/board'>게시판</Link>
             </Menu.Item>
             <Menu.Item key="cs">
-              내 정보
-            </Menu.Item>
-            <Menu.Item key="signin">
-            <Link to='/m_login'>로그인</Link>
-            </Menu.Item>
-            <Menu.Item key="signup">
-            <Link to="/m_signup">회원가입</Link>
+            <Link to='/review'>리뷰</Link>
             </Menu.Item>
           </Menu>
         }

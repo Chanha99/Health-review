@@ -12,6 +12,10 @@
     text-align: center;
 }
 
+.rd_name{
+    margin-top: 1.5%;
+}
+
 .rd_content {
     margin-top: 5%;
     height: 300px;
@@ -77,4 +81,29 @@
 
 .rd_rate {
     padding-right: 5px;
+}
+
+@media ( max-width: 480px ){
+    .rd_main {
+        width: 100%;
+        margin: 20px auto 0;
+    }
+
+    .m_rd_header{
+        margin-left: 1.5%;
+    }
+
+    .m_rd_name{
+        margin-left: 1.5%;
+    }
+
+    .m_rd_comment{
+        margin-left: 1.5%;
+    }
+
+    .m_rd_content{
+        margin-left: 1.5%;
+        margin-top: 5%;
+        height: 300px;
+    }
 }

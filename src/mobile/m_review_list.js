@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../css/review_list.css';
 
-const ExerciseList = () => {
+const M_ExerciseList = () => {
   const [exercises, setExercises] = useState([]);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const ExerciseList = () => {
 
   return (
     <div className='review_main'>
-      <h2 className='review_1'>운동 목록</h2>
+      <h2>운동 목록</h2>
       <div >
       <ul className='review_wrap'>
         {exercises.map((exercise) => (
@@ -40,4 +40,4 @@ const ExerciseList = () => {
   );
 };
 
-export default ExerciseList;
+export default M_ExerciseList;

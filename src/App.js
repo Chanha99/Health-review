@@ -1,12 +1,10 @@
 import React from 'react';
 // import { useEffect  } from 'react';
 import { Link, Route, Routes, } from 'react-router-dom';
-import L_Login from './m_login.js';
-import M_Signup from './m_signup.js';
 import {useMediaQuery} from 'react-responsive';
 import Home from './home';
 // import Modal from './login';
-import Mobile_Home from './mobile_home';
+import Mobile_Home from './mobile/mobile_home';
 // import Menubar from './menubar.js';
 import NotFound from './test.js';
 import Login from './component/login.js';
@@ -30,7 +28,17 @@ import PostDetail from './component/PostDetail.js';
 import Review from './component/review_list.js';
 import Review_detail from './component/reivew_detail.js'
 
-
+import M_health_list from './mobile/m_health_list.js';
+import M_leg from './mobile/m_leg.js';
+import M_Chest1 from './mobile/m_chest1.js';
+import M_Back from './mobile/m_back.js';
+import M_Shoulder from './mobile/m_shoulder.js';
+import M_header from './mobile/m_header.js';
+import M_PostDetail from './mobile/m_PostDetail.js';
+import M_PostList from './mobile/m_PostList.js';
+import M_ExerciseDetail from './mobile/m_reivew_detail.js';
+import M_ExerciseList from './mobile/m_review_list.js';
+import M_PostForm from './mobile/m_write.js';
 
 
 function App() {
@@ -55,14 +63,23 @@ function App() {
       <div className='App'>
         
       <Mobile>
+
+      <M_header/>
         <Routes>
          <Route path="/" element={<Mobile_Home/>} />
-         <Route path="/#/m_login" element={<L_Login/>} />
-         <Route path="/m_signup" element={<M_Signup/>} />
+         <Route path="/m_health_list" element={<M_health_list/>} />
+         <Route path="/m_leg" element={<M_leg/>} />
+         <Route path="/m_chest1" element={<M_Chest1/>}></Route>
+         <Route path="/m_back" element={<M_Back/>}></Route>
+         <Route path="/m_shoulder" element={<M_Shoulder/>}></Route>
+         <Route path="/write" element={<M_PostForm/>}></Route>
+         <Route path="/board" element={<M_PostList/>}></Route>
+         <Route path="/board/:id" element={<M_PostDetail/>}></Route>
+         <Route path="/review/" element={<M_ExerciseList/>}></Route>
+         <Route path="/review/:id" element={<M_ExerciseDetail/>}></Route>
          <Route path="*" element={<NotFound />}></Route>
          
       </Routes>
-      <Link to="/m_login">로그인</Link>
        </Mobile>
        
       <PC>

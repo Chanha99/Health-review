@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import '../css/postdetail.css';
 
-const PostDetail = () => {
+const M_PostDetail = () => {
   const { id } = useParams(); // useParams 훅을 사용하여 URL 파라미터를 가져옴
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]);
@@ -53,17 +53,17 @@ const PostDetail = () => {
   }, [post]);
 
   return (
-    <div className='pd_main'>
+    <div className='m_pd_main'>
       <div className='pd_wrap'>
       <div className='pd_header'>
-      <h2>게시글</h2>
+      <h2 className='m_pd_header'>게시글</h2>
       </div>
       {post ? (
         <div>
-          <h3 className='pd_title'>{post.title}</h3>
-          <p className='pd_info'>작성자: {post.author} | 작성 시간: {formatTimestamp(post.timestamp)}</p> 
+          <h3 className='m_pd_title'>{post.title}</h3>
+          <p className='m_pd_info'>작성자: {post.author} | 작성 시간: {formatTimestamp(post.timestamp)}</p> 
           
-          <p className='pd_content'>{post.content}</p>
+          <p className='m_pd_content'>{post.content}</p>
         </div>
       ) : (
         <p>Loading post detail...</p>
@@ -71,11 +71,11 @@ const PostDetail = () => {
 
       <div className='comment-section'>
         <div className='pd_comment'>
-        <h3>댓글</h3>
+        <h3 className='m_pd_comment'>댓글</h3>
         </div>
         {comments.map((comment) => (
           <div key={comment.id} className='comment'>
-            <p className='pd_comment_new'>{comment.username}: {comment.content}</p>
+            <p className='m_pd_comment_new'>{comment.username}: {comment.content}</p>
           </div>
         ))}
         <div className='pd_comment_box'>
@@ -99,9 +99,9 @@ const PostDetail = () => {
         </div>
       </div>
       </div>
-      <div className='footer'></div>
+      <div className='m_footer'></div>
     </div>
   );
 };
 
-export default PostDetail;
+export default M_PostDetail;

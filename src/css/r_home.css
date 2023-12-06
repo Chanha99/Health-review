@@ -172,6 +172,13 @@
     width: 15%;
 }
 
+.h_num {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
 .footer{
     height: 150px;
 }

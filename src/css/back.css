@@ -11,3 +11,12 @@
 .back div{
     margin-top: 2%;
 }
+
+@media ( max-width: 480px ){
+    .back{
+        display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    flex-direction: column;
+    }
+}

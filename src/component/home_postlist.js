@@ -63,7 +63,7 @@ const Home_postList = ({ onSelectPost }) => {
           ))}
         </ul>
       </div>
-      <div className='num'>
+      <div className='h_num'>
       <Stack spacing={2}>
         <Pagination
           count={totalPages}

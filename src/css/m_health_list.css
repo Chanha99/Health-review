@@ -1,0 +1,17 @@
+.m_health_list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    text-align: center;
+}
+
+.m_h_l {
+    margin-bottom: 10%;
+    border-bottom: 4px solid #D1D2D4;
+    width: 100%;
+}
+
+.m_h_l > h1 {
+    margin-left: 2%;
+}
